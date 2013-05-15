@@ -45,7 +45,7 @@ void loop()
 {
   ClearSlate();
   
-  CheckButtonsDown(); //Uses moveboat
+  CheckButtonsDown(); //Uses moveboat()
   MoveBoat();
   for (int i=0; i<5; i++)
     DrawPx(xc[i],yc[i],17); 
