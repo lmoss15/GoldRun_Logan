@@ -22,6 +22,8 @@ Point FishArray2[2]={z1,z2};
 int FishDirection1; //Which way the fish go
 int FishDirection2;
 
+int FishCounter;
+
 void setup()
 {
  MeggyJrSimpleSetup(); 
@@ -44,6 +46,8 @@ void setup()
 void loop()
 {
   ClearSlate();
+  FishCounter++;
+  
   
   CheckButtonsDown(); //Uses moveboat()
   MoveBoat();
@@ -55,6 +59,31 @@ for (int l=0; l<3; l++)
  DrawPx(FishArray1[l].x,FishArray1[l].y,1); //Uses same int for both fish arrays
  DrawPx(FishArray2[l].x,FishArray2[l].y,1);
    }
+   
+if (FishCounter%3 == 1)
+  {
+   FishArray1[0].x = FishArray1[0].x++;
+   FishArray1[1].x = FishArray1[1].x++;
+  }
+  
+if (FishCounter%2 == 1)
+  {
+ FishArray2[0].x = FishArray2[0].x--;
+ FishArray2[1].x = FishArray2[1].x--;
+  }
+  
+  
+ if (FishArray1[0].x > 7)
+   FishArray1[0].x = 0;
+ 
+ if (FishArray1[1].x > 7)
+   FishArray1[1].x = 0;
+   
+ if (FishArray2[0].x < 0)
+   FishArray2[0].x = 7;
+   
+  if (FishArray2[1].x < 0)
+   FishArray2[1].x = 7; 
    
 DisplaySlate();
 delay(150);
