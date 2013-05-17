@@ -11,9 +11,6 @@ struct Point //Defines the struct
 int xc[5]={0,0,1,2,2}; //Defines current X and current Y
 int yc[5]={7,6,6,6,7};
 
-int FishingLinex[6];
-int FishingLiney[6];
-
 Point s1 = {1,3}; //Parts of fish 1
 Point s2 = {0,3};
 Point z1 = {6,2}; //Parts of fish 2
@@ -63,13 +60,13 @@ for (int l=0; l<3; l++)
  DrawPx(FishArray2[l].x,FishArray2[l].y,1);
    }
    
-if (FishCounter%5 == 1)
+if (FishCounter%3 == 1)
   {
    FishArray1[0].x = FishArray1[0].x++;
    FishArray1[1].x = FishArray1[1].x++;
   }
   
-if (FishCounter%4 == 1)
+if (FishCounter%2 == 1)
   {
  FishArray2[0].x = FishArray2[0].x--;
  FishArray2[1].x = FishArray2[1].x--;
@@ -89,7 +86,7 @@ if (FishCounter%4 == 1)
    FishArray2[1].x = 7; 
    
 DisplaySlate();
-delay(100);
+delay(150);
 }
 
 void MoveBoat() //Creates a name to move the boat
@@ -111,13 +108,4 @@ void MoveBoat() //Creates a name to move the boat
         xc[i]=xc[i]-1;
     }
   } 
-  if (Button_A)
-  {
-    for (int i=0;i<6;i++)
-    {
-      FishingLinex[i]=xc[2];
-      FishingLiney[i]=yc[2]-1;
-      DrawPx(FishingLinex[i],FishingLiney[i],1);
-    }
-}
 }
