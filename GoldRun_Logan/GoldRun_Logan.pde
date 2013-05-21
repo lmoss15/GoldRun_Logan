@@ -10,7 +10,7 @@ struct Point //Defines the struct
 
 int w;
 
-int score[8] = {1,2,4,8,16,32,64,128};
+int score[8] = {1,3,7,15,31,63,127,255};
 
 int xchest = random(6)+1;
 int ychest = random(0);
