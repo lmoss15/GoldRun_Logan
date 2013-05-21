@@ -47,7 +47,7 @@ void setup()
  
  FishDirection1 = 0; //Left
  FishDirection2 = 180; //Right
- 
+
  ClearSlate();
  for (int i=0; i<5; i++)
    DrawPx(xc[i],yc[i],17);
@@ -71,7 +71,6 @@ void loop()
   FishCounter++;
   BoatCounter++;
   DrawPx(xc[2],yc[2]+1,14);
-  
   
   CheckButtonsDown(); //Uses moveboat()
   MoveBoat();
@@ -108,6 +107,7 @@ if (FishCounter%2 == 1)
    
   if (FishArray2[1].x < 0)
    FishArray2[1].x = 7; 
+   
    
 DisplaySlate();
 delay(150);
@@ -155,3 +155,4 @@ void MoveBoat() //Creates a name to move the boat
   DrawPx(xc[2],yc[2]+1,14);
   DisplaySlate();
 }
+
