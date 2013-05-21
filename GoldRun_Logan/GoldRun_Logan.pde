@@ -143,16 +143,144 @@ void MoveBoat() //Creates a name to move the boat
    DrawPx(xc[2],yc[2]-4,14);
    DrawPx(xc[2],yc[2]-5,14);
    DrawPx(xc[2],yc[2]-6,14);
+   
+   Collision();
+   
    if (xc[2] == xchest && yc[2]-6 == ychest)
    {
      xchest = random(6)+1;
      ychest = random(0);
      Tone_Start(ToneF5,100);
      w++;
-     SetAuxLEDs(score[w]);
+     SetAuxLEDs(score[w-1]);
    }
   }
+  
   DrawPx(xc[2],yc[2]+1,14);
   DisplaySlate();
 }
 
+void Collision()
+{
+  if (xc[2] == FishArray1[0].x && yc[2]-3 == FishArray1[0].y)
+  {
+    SetAuxLEDs(0);
+    ClearSlate();
+    
+    for (int a = 0; a < 8; a++)
+    {
+      for (int r = 0; r<7; r++)
+      {
+        DrawPx(a,r,13);
+      }
+    }
+
+    DrawPx(xc[2],yc[2]-1,14);
+   DrawPx(xc[2],yc[2]-2,14);
+   DrawPx(xc[2],yc[2]-3,14);
+   DrawPx(xc[2],yc[2]-4,14);
+   DrawPx(xc[2],yc[2]-5,14);
+   DrawPx(xc[2],yc[2]-6,14);
+   for (int i=0; i<5; i++)
+   DrawPx(xc[i],yc[i],17);
+   drawx();
+   DisplaySlate();
+    delay(1000000);
+  }
+  if (xc[2] == FishArray1[1].x && yc[2]-3 == FishArray1[1].y)
+  {
+    SetAuxLEDs(0);
+    ClearSlate();
+    for (int a = 0; a < 8; a++)
+    {
+      for (int r = 0; r<7; r++)
+      {
+        DrawPx(a,r,13);
+      }
+    }
+    
+    DrawPx(xc[2],yc[2]+1,14);
+    DrawPx(xc[2],yc[2]-1,14);
+   DrawPx(xc[2],yc[2]-2,14);
+   DrawPx(xc[2],yc[2]-3,14);
+   DrawPx(xc[2],yc[2]-4,14);
+   DrawPx(xc[2],yc[2]-5,14);
+   DrawPx(xc[2],yc[2]-6,14);
+   for (int i=0; i<5; i++)
+   DrawPx(xc[i],yc[i],17);
+   drawx();
+   DisplaySlate();
+    delay(1000000);
+  }
+  if (xc[2] == FishArray2[0].x && yc[2]-4 == FishArray2[0].y)
+  {
+    SetAuxLEDs(0);
+    ClearSlate();
+    for (int a = 0; a < 8; a++)
+    {
+      for (int r = 0; r<7; r++)
+      {
+        DrawPx(a,r,13);
+      }
+    }
+    DrawPx(xc[2],yc[2]+1,14);
+    DrawPx(xc[2],yc[2]-1,14);
+   DrawPx(xc[2],yc[2]-2,14);
+   DrawPx(xc[2],yc[2]-3,14);
+   DrawPx(xc[2],yc[2]-4,14);
+   DrawPx(xc[2],yc[2]-5,14);
+   DrawPx(xc[2],yc[2]-6,14);
+   for (int i=0; i<5; i++)
+   DrawPx(xc[i],yc[i],17);
+   drawx();
+   DisplaySlate();
+    delay(1000000);
+  }
+  if (xc[2] == FishArray2[1].x && yc[2]-4 == FishArray2[1].y)
+  {
+    SetAuxLEDs(0);
+    ClearSlate();
+    
+    for (int a = 0; a < 8; a++)
+    {
+      for (int r = 0; r<7; r++)
+      {
+        DrawPx(a,r,13);
+      }
+    }
+    
+    DrawPx(xc[2],yc[2]+1,14);
+    DrawPx(xc[2],yc[2]-1,14);
+   DrawPx(xc[2],yc[2]-2,14);
+   DrawPx(xc[2],yc[2]-3,14);
+   DrawPx(xc[2],yc[2]-4,14);
+   DrawPx(xc[2],yc[2]-5,14);
+   DrawPx(xc[2],yc[2]-6,14);
+   for (int i=0; i<5; i++)
+   DrawPx(xc[i],yc[i],17);
+   drawx();
+   DisplaySlate();
+    delay(1000000);
+  }
+}
+
+void drawx()
+{
+  int xcross[8] = {0,1,2,3,4,5,6,7};
+  int ycross[8] = {0,1,2,3,4,5,6,7};
+
+  for (int q=7;q>-1;q--)
+    DrawPx(xcross[q],ycross[q],1);
+}
+
+void win()
+{
+  if (w=255)
+  {
+    for (int a = 0; a<7; a++)
+      {
+        DrawPx(a,a,7);
+      }
+  }
+}
+  
