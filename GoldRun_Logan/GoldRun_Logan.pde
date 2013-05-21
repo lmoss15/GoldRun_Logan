@@ -8,6 +8,9 @@ struct Point //Defines the struct
   int y;
 };
 
+int w;
+
+int score[8] = {1,2,4,8,16,32,64,128};
 
 int xchest = random(6)+1;
 int ychest = random(0);
@@ -34,7 +37,11 @@ int BoatCounter;
 
 void setup()
 {
- MeggyJrSimpleSetup(); 
+ MeggyJrSimpleSetup();
+
+ w = 1;
+
+ SetAuxLEDs(w); 
  
  EditColor(CustomColor1, 3, 1, 0);
  
@@ -141,7 +148,10 @@ void MoveBoat() //Creates a name to move the boat
      xchest = random(6)+1;
      ychest = random(0);
      Tone_Start(ToneF5,100);
+     w++;
+     SetAuxLEDs(score[w]);
    }
   }
+  DrawPx(xc[2],yc[2]+1,14);
   DisplaySlate();
 }
