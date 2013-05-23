@@ -60,6 +60,7 @@ void setup()
 
 void loop()
 {
+  win(); //Attempt to void win
   ClearSlate();
   for (int a = 0; a < 8; a++)
     {
@@ -83,20 +84,20 @@ for (int l=0; l<3; l++)
  DrawPx(FishArray2[l].x,FishArray2[l].y,1);
    }
    
-if (FishCounter%3 == 1)
+if (FishCounter%3 == 1) //speed of fish
   {
    FishArray1[0].x = FishArray1[0].x++;
    FishArray1[1].x = FishArray1[1].x++;
   }
   
-if (FishCounter%2 == 1)
+if (FishCounter%2 == 1) //speed of fish
   {
  FishArray2[0].x = FishArray2[0].x--;
  FishArray2[1].x = FishArray2[1].x--;
   }
  
   
- if (FishArray1[0].x > 7)
+ if (FishArray1[0].x > 7) //Fish array loops
    FishArray1[0].x = 0;
  
  if (FishArray1[1].x > 7)
@@ -116,7 +117,7 @@ delay(150);
 void MoveBoat() //Creates a name to move the boat
 {
   CheckButtonsDown();
-  if (Button_Right) //If right is held down, Boat goes left
+  if (Button_Right) //If right is held down, Boat goes right
   {
     DrawPx(xc[2],yc[2]+1,14);
     if (xc[0]!=5)
@@ -125,7 +126,7 @@ void MoveBoat() //Creates a name to move the boat
         xc[i]=xc[i]+1;
     }
   }
-  if (Button_Left)
+  if (Button_Left) //If left is held down, boat goes left.
   {
     DrawPx(xc[2],yc[2]+1,14);
     if (xc[0]!= 0)
@@ -146,13 +147,13 @@ void MoveBoat() //Creates a name to move the boat
    
    Collision();
    
-   if (xc[2] == xchest && yc[2]-6 == ychest)
+   if (xc[2] == xchest && yc[2]-6 == ychest) //if line hits chest, then make new chest and add one to yellow leds & Make noise
    {
      xchest = random(6)+1;
      ychest = random(0);
      Tone_Start(ToneF5,100);
      w++;
-     SetAuxLEDs(score[w-1]);
+     SetAuxLEDs(score[w-1]); //Set int score to -1
    }
   }
   
@@ -160,11 +161,11 @@ void MoveBoat() //Creates a name to move the boat
   DisplaySlate();
 }
 
-void Collision()
+void Collision() //Makes effects when line collides with fish.
 {
   if (xc[2] == FishArray1[0].x && yc[2]-3 == FishArray1[0].y)
   {
-    SetAuxLEDs(0);
+    SetAuxLEDs(0); //restart leds
     ClearSlate();
     
     for (int a = 0; a < 8; a++)
@@ -175,7 +176,7 @@ void Collision()
       }
     }
 
-    DrawPx(xc[2],yc[2]-1,14);
+    DrawPx(xc[2],yc[2]-1,14); /*Draws Background, makes noise, draws boat, makes x */
    DrawPx(xc[2],yc[2]-2,14);
    DrawPx(xc[2],yc[2]-3,14);
    DrawPx(xc[2],yc[2]-4,14);
@@ -183,13 +184,17 @@ void Collision()
    DrawPx(xc[2],yc[2]-6,14);
    for (int i=0; i<5; i++)
    DrawPx(xc[i],yc[i],17);
+   Tone_Start(ToneF5,500);
+   delay(500);
+   Tone_Start(ToneA3,500);
    drawx();
    DisplaySlate();
-    delay(1000000);
+    delay(10000000);
+    ClearSlate();
   }
   if (xc[2] == FishArray1[1].x && yc[2]-3 == FishArray1[1].y)
   {
-    SetAuxLEDs(0);
+    SetAuxLEDs(0); //restart leds
     ClearSlate();
     for (int a = 0; a < 8; a++)
     {
@@ -199,7 +204,7 @@ void Collision()
       }
     }
     
-    DrawPx(xc[2],yc[2]+1,14);
+    DrawPx(xc[2],yc[2]+1,14); /*Draws Background, makes noise, draws boat, makes x */
     DrawPx(xc[2],yc[2]-1,14);
    DrawPx(xc[2],yc[2]-2,14);
    DrawPx(xc[2],yc[2]-3,14);
@@ -208,13 +213,17 @@ void Collision()
    DrawPx(xc[2],yc[2]-6,14);
    for (int i=0; i<5; i++)
    DrawPx(xc[i],yc[i],17);
+   Tone_Start(ToneF5,500);
+   delay(500);
+   Tone_Start(ToneA3,500);
    drawx();
    DisplaySlate();
-    delay(1000000);
+    delay(10000000);
+    ClearSlate();
   }
-  if (xc[2] == FishArray2[0].x && yc[2]-4 == FishArray2[0].y)
+  if (xc[2] == FishArray2[0].x && yc[2]-4 == FishArray2[0].y) 
   {
-    SetAuxLEDs(0);
+    SetAuxLEDs(0); //restart leds
     ClearSlate();
     for (int a = 0; a < 8; a++)
     {
@@ -223,7 +232,7 @@ void Collision()
         DrawPx(a,r,13);
       }
     }
-    DrawPx(xc[2],yc[2]+1,14);
+    DrawPx(xc[2],yc[2]+1,14); /*Draws Background, makes noise, draws boat, makes x */
     DrawPx(xc[2],yc[2]-1,14);
    DrawPx(xc[2],yc[2]-2,14);
    DrawPx(xc[2],yc[2]-3,14);
@@ -232,13 +241,17 @@ void Collision()
    DrawPx(xc[2],yc[2]-6,14);
    for (int i=0; i<5; i++)
    DrawPx(xc[i],yc[i],17);
+   Tone_Start(ToneF5,500);
+   delay(500);
+   Tone_Start(ToneA3,500);
    drawx();
    DisplaySlate();
-    delay(1000000);
+    delay(10000000);
+   ClearSlate();
   }
   if (xc[2] == FishArray2[1].x && yc[2]-4 == FishArray2[1].y)
   {
-    SetAuxLEDs(0);
+    SetAuxLEDs(0); //restart leds
     ClearSlate();
     
     for (int a = 0; a < 8; a++)
@@ -249,7 +262,7 @@ void Collision()
       }
     }
     
-    DrawPx(xc[2],yc[2]+1,14);
+    DrawPx(xc[2],yc[2]+1,14); /*Draws Background, makes noise, draws boat, makes x */
     DrawPx(xc[2],yc[2]-1,14);
    DrawPx(xc[2],yc[2]-2,14);
    DrawPx(xc[2],yc[2]-3,14);
@@ -258,24 +271,28 @@ void Collision()
    DrawPx(xc[2],yc[2]-6,14);
    for (int i=0; i<5; i++)
    DrawPx(xc[i],yc[i],17);
+   Tone_Start(ToneF5,500);
+   delay(500);
+   Tone_Start(ToneA3,500);
    drawx();
    DisplaySlate();
-    delay(1000000);
+    delay(10000000);
+    ClearSlate();
   }
 }
 
-void drawx()
+void drawx() //Red X
 {
-  int xcross[8] = {0,1,2,3,4,5,6,7};
+  int xcross[8] = {0,1,2,3,4,5,6,7}; //Create red y int
   int ycross[8] = {0,1,2,3,4,5,6,7};
 
   for (int q=7;q>-1;q--)
-    DrawPx(xcross[q],ycross[q],1);
+    DrawPx(xcross[q],ycross[q],1); //Draws Red x
 }
 
-void win()
+void win() //Attempt to make game finish.
 {
-  if (w=255)
+  if (score[8]==127)
   {
     for (int a = 0; a<7; a++)
       {
